@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +12,8 @@ namespace Coffee_Shop
 {
     public partial class Form1 : Form
     {
-    
+        
+
         int i = 0;
         int a = 0;
         int b = 0;
@@ -53,6 +54,8 @@ namespace Coffee_Shop
 
             try
             {
+                top:
+
                 if (customernameTextBox.Text == "" || contactnoTextBox.Text == "" || addressTextBox.Text == "" ||
                                orderComboBox.Text == "" || quantityTextBox.Text == "")
                 {
@@ -90,72 +93,70 @@ namespace Coffee_Shop
                 }
                 else
                 {
-                    ////contactNo[0] = "0";
-                    ////for (int j = 0; j < contactNo.Count(); j++)
-                    ////{
-                    //    if (contactNo[j] == contactnoTextBox.Text)
-                    //    {
-                    //        MessageBox.Show(" Contact no Must be Unique ");
-                    //    }
-                    //    else
-                    //    {
-                    customerName.Add(customernameTextBox.Text);
-                    contactNo.Add(contactnoTextBox.Text);
-                    address.Add(addressTextBox.Text);
-                    order.Add(orderComboBox.Text);
-                    quantity.Add(quantityTextBox.Text);
 
-                    a = Convert.ToInt32(quantityTextBox.Text);
-
-                    purchase_informationRichTextBox.Text = "";
-
-                    if (orderComboBox.Text == "Black")
+                    if(contactNo.Contains(contactnoTextBox.Text))
                     {
-                        Price(120, a);
+                        MessageBox.Show("Contact No must be Unique");
+                        contactnoTextBox.Text = "";
+                        goto top;
                     }
-                    else if (orderComboBox.Text == "Cold")
-                    {
-                        Price(100, a);
+                   else
+                   {
+                        customerName.Add(customernameTextBox.Text);
+                        contactNo.Add(contactnoTextBox.Text);
+                        address.Add(addressTextBox.Text);
+                        order.Add(orderComboBox.Text);
+                        quantity.Add(quantityTextBox.Text);
+
+                        a = Convert.ToInt32(quantityTextBox.Text);
+
+                        purchase_informationRichTextBox.Text = "";
+
+                        if (orderComboBox.Text == "Black")
+                        {
+                            Price(120, a);
+                        }
+                        else if (orderComboBox.Text == "Cold")
+                        {
+                            Price(100, a);
+                        }
+                        else if (orderComboBox.Text == "Hot")
+                        {
+                            Price(90, a);
+                        }
+                        else if (orderComboBox.Text == "Regular")
+                        {
+                            Price(80, a);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please enter a order");
+                        }
+
+
+
+
+                        purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Customer Name :" + customerName[i];
+                        purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Contact Number:" + contactNo[i];
+                        purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Address             :" + address[i];
+                        purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Order                 :" + order[i];
+                        purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Quantity            :" + quantity[i];
+                        purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Price                 :" + price[i] + "Tk.";
+                        purchase_informationRichTextBox.SelectedText = Environment.NewLine + "";
+
+                        MessageBox.Show("Successfully Saved");
+
+                        customernameTextBox.Text = "";
+                        contactnoTextBox.Text = "";
+                        addressTextBox.Text = "";
+                        orderComboBox.Text = "";
+                        quantityTextBox.Text = "";
+                        i++;
+                        //}
+                        //}
+
+                        //List<int> quantity1;
                     }
-                    else if (orderComboBox.Text == "Hot")
-                    {
-                        Price(90, a);
-                    }
-                    else if (orderComboBox.Text == "Regular")
-                    {
-                        Price(80, a);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please enter a order");
-                    }
-
-
-
-
-                    purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Customer Name :" + customerName[i];
-                    purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Contact Number:" + contactNo[i];
-                    purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Address             :" + address[i];
-                    purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Order                 :" + order[i];
-                    purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Quantity            :" + quantity[i];
-                    purchase_informationRichTextBox.SelectedText = Environment.NewLine + "Price                 :" + price[i] + "Tk.";
-                    purchase_informationRichTextBox.SelectedText = Environment.NewLine + "";
-
-                    MessageBox.Show("Successfully Saved");
-
-                    customernameTextBox.Text = "";
-                    contactnoTextBox.Text = "";
-                    addressTextBox.Text = "";
-                    orderComboBox.Text = "";
-                    quantityTextBox.Text = "";
-                    i++;
-                    //}
-                    //}
-
-                    //List<int> quantity1;
-
-
-
                 }
             }
             catch (Exception Ex)
